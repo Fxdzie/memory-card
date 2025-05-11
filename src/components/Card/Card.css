@@ -1,3 +1,46 @@
-.container{
+.card-container{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    min-height: 200px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
+
+@keyframes shimmer {
+    100% {
+        mask-position: left
+    }
+ }
+
+.card-container:hover{
+    transform: scale(1.02);
+}
+
+.image{
+    width: 12rem;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    border-radius: 4px;
+    display: inline-block;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 3s infinite;
+}
+
+.image-hidden{
+    display: none;
+}
+
+.loaderContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
