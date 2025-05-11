@@ -1,7 +1,14 @@
 import { memo,useCallback,useState } from "react";
+import './Card.css'
+import Loader from "../Loader/Loader";
 
 function Card({imgUrl,imgId,category,processTurn}){
     const [isLoading, setIsLoading] = useState(true);
+    const [url, setUrl] = useState('');
+
+    imgUrl.then((value)=>{
+        setUrl(value);
+    });
 
     const handleImageLoad = useCallback(()=>{
         setIsLoading(false);
@@ -12,17 +19,17 @@ function Card({imgUrl,imgId,category,processTurn}){
     },[processTurn,imgId]);
 
     return (
-        <div className="container" onClick={handleClick}>
+        <div className="card-container" onClick={handleClick}>
             {isLoading && (
                 <div className="loaderContainer">
-                    //put loading component
+                    <Loader message = 'Loading...'/>
                 </div>
             )}
             <img 
-                src={imgUrl} 
+                src={url} 
                 alt={category}
                 onLoad={handleImageLoad}
-                className={"image"+`${isLoading ? 'hidden' : ''}`} />
+                className={isLoading ? "image-hidden": 'image'} />
         </div>
     );
 
